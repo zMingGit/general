@@ -194,22 +194,12 @@ uninstall(){
 	echo -e "${Info} please remember ${reboot} to stop tcp_nanqinlang !"
 }
 
-echo -e "${Info} 选择你要使用的功能: "
-echo -e "1.安装内核\n2.开启算法\n3.检查算法运行状态\n4.卸载算法"
-read -p "输入数字以选择:" function
-
-while [[ ! "${function}" =~ ^[1-4]$ ]]
-	do
-		echo -e "${Error} 无效输入"
-		echo -e "${Info} 请重新选择" && read -p "输入数字以选择:" function
-	done
-
-if [[ "${function}" == "1" ]]; then
+if [[ "$@" == "install" ]]; then
 	install
-elif [[ "${function}" == "2" ]]; then
+elif [[ "$@" == "start" ]]; then
 	start
-elif [[ "${function}" == "3" ]]; then
+elif [[ "$@" == "status" ]]; then
 	status
 else
-	uninstall
+    echo -e "./tcp_nanqinlang-1.3.2.sh install/start/status"
 fi
